@@ -1,7 +1,7 @@
 <template>
   <div>
     <DynamicTable
-      row-key="id"
+      row-key="permissionsid"
       header-title="菜单管理"
       :data-request="loadTableData"
       :columns="columns"
@@ -42,24 +42,26 @@
 
   const loadTableData = async () => {
     const data = await getMenuList();
+    console.log('data', data);
     menuTree.value = formatMenu2Tree(
-      cloneDeep(data).filter((n) => n.type !== 2),
-      null,
-    );
-
-    return { list: formatMenu2Tree(cloneDeep(data), null) };
+      cloneDeep(data).filter((n) => n.menutype !== '2'),
+      '-1',
+    ); //父节点为-1
+    //console.log('cloneDeep(data)', cloneDeep(data));
+    //console.log('formatMenu2Tree(cloneDeep(data), null)=', formatMenu2Tree(cloneDeep(data), null));
+    return { list: formatMenu2Tree(cloneDeep(data), '-1') };
   };
 
   const openMenuModal = async (record: Partial<TableListItem>) => {
     const [formRef] = await showModal({
       modalProps: {
-        title: `${record.id ? '编辑' : '新增'}菜单`,
+        title: `${record.permissionsid ? '编辑' : '新增'}菜单`,
         width: 700,
         onFinish: async (values) => {
           console.log('新增/编辑菜单', values);
-          values.menuId = record.id;
-          values.perms = values.perms?.join(',');
-          await (record.id ? updateMenu : createMenu)(values);
+          values.menuId = record.permissionsid;
+          values.perms = values.permission?.join(',');
+          await (record.permissionsid ? updateMenu : createMenu)(values);
           dynamicTableInstance?.reload();
         },
       },
@@ -82,12 +84,12 @@
     formRef?.setFieldsValue({
       ...record,
       icon: record.icon ?? '',
-      perms: record.perms?.split(','),
-      parentId: record.parentId ?? -1,
+      perms: record.permission?.split(','),
+      parentid: record.permission ?? -1,
     });
   };
   const delRowConfirm = async (record: TableListItem) => {
-    await deleteMenu({ menuId: record.id });
+    await deleteMenu({ permissionsid: record.permissionsid });
     dynamicTableInstance?.reload();
   };
 

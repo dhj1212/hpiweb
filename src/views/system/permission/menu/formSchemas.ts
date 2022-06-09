@@ -5,24 +5,24 @@ import { constantRouterComponents } from '@/router/asyncModules';
 
 export const menuSchemas: FormSchema<API.MenuAddParams>[] = [
   {
-    field: 'type',
+    field: 'menutype',
     component: 'RadioGroup',
     label: '菜单类型',
     defaultValue: 0,
-    rules: [{ required: true, type: 'number' }],
+    rules: [{ required: true, type: 'string' }],
     componentProps: {
       options: [
         {
           label: '目录',
-          value: 0,
+          value: '0',
         },
         {
           label: '菜单',
-          value: 1,
+          value: '1',
         },
         {
           label: '权限',
-          value: 2,
+          value: '2',
         },
       ],
     },
@@ -34,7 +34,7 @@ export const menuSchemas: FormSchema<API.MenuAddParams>[] = [
     rules: [{ required: true, type: 'string' }],
   },
   {
-    field: 'parentId',
+    field: 'parentid',
     component: 'TreeSelect',
     label: '上级节点',
     componentProps: {
@@ -44,24 +44,24 @@ export const menuSchemas: FormSchema<API.MenuAddParams>[] = [
       },
       getPopupContainer: () => document.body,
     },
-    rules: [{ required: true, type: 'number' }],
-  },
-  {
-    field: 'router',
-    component: 'Input',
-    label: '节点路由',
-    vIf: ({ formModel }) => formModel['type'] !== 2,
     rules: [{ required: true, type: 'string' }],
   },
   {
-    field: 'perms',
+    field: 'path',
+    component: 'Input',
+    label: '节点路由',
+    vIf: ({ formModel }) => formModel['type'] !== '2',
+    rules: [{ required: true, type: 'string' }],
+  },
+  {
+    field: 'permission',
     component: () => MultipleCascader,
     label: '权限',
-    vIf: ({ formModel }) => formModel['type'] === 2,
+    vIf: ({ formModel }) => formModel['type'] === '2',
     rules: [{ required: true, type: 'array', message: '请选择权限' }],
   },
   {
-    field: 'viewPath',
+    field: 'component',
     component: 'Select',
     label: '文件路径',
     vIf: ({ formModel }) => formModel['type'] === 1,
@@ -91,7 +91,7 @@ export const menuSchemas: FormSchema<API.MenuAddParams>[] = [
     vIf: ({ formModel }) => formModel['type'] !== 2,
   },
   {
-    field: 'orderNum',
+    field: 'seq',
     component: 'InputNumber',
     label: '排序号',
     defaultValue: 255,

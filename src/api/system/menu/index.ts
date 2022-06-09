@@ -42,7 +42,7 @@ export function updateMenu(data: API.MenuUpdateParams) {
   );
 }
 
-export function deleteMenu(data: { menuId: number }) {
+export function deleteMenu(data: { permissionsid: string }) {
   return request(
     {
       url: Api.delete,

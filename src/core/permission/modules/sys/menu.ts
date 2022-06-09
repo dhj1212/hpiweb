@@ -1,5 +1,5 @@
 export const sysMenu = {
-  list: 'sys/menu/list',
+  list: 'user/perm/list',
   add: 'sys/menu/add',
   update: 'sys/menu/update',
   info: 'sys/menu/info',

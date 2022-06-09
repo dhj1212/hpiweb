@@ -39,19 +39,19 @@ export const formatDept2Tree = (
  */
 export const formatMenu2Tree = (
   menus: API.MenuListResult,
-  parentId: number | null = null,
+  parentId: string | null | undefined = null,
   keyPath: (string | number)[] = [],
 ): TreeDataItem[] => {
   return menus
-    .filter((item) => item.parentId === parentId)
+    .filter((item) => item.parentid === parentId)
     .map((item) => {
       const _keyPath = keyPath.concat(parentId || []);
-      const arr = formatMenu2Tree(menus, item.id, _keyPath);
+      const arr = formatMenu2Tree(menus, item.permissionsid, _keyPath);
       return Object.assign(item, {
         keyPath: _keyPath,
         title: item.name,
-        key: item.id,
-        value: item.id,
+        key: item.permissionsid,
+        value: item.permissionsid,
         formData: item,
         children: arr.length ? arr : null,
       });

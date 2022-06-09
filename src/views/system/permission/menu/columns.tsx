@@ -7,13 +7,13 @@ export type TableColumnItem = TableColumn<TableListItem>;
 /**
  * 将对应菜单类型转为字符串字意
  */
-const getMenuType = (type) => {
-  switch (type) {
-    case 0:
+const getMenuType = (menutype) => {
+  switch (menutype) {
+    case '0':
       return '目录';
-    case 1:
+    case '1':
       return '菜单';
-    case 2:
+    case '2':
       return '权限';
     default:
       return '';
@@ -36,12 +36,12 @@ export const baseColumns: TableColumnItem[] = [
     title: '类型',
     width: 80,
     align: 'center',
-    dataIndex: 'type',
-    bodyCell: ({ record }) => <>{getMenuType(record.type)}</>,
+    dataIndex: 'menutype',
+    bodyCell: ({ record }) => <>{getMenuType(record.menutype)}</>,
   },
   {
     title: '节点路由',
-    dataIndex: 'router',
+    dataIndex: 'path',
     align: 'center',
     width: 240,
   },
@@ -55,19 +55,19 @@ export const baseColumns: TableColumnItem[] = [
     title: '文件路径',
     width: 280,
     align: 'center',
-    dataIndex: 'viewPath',
+    dataIndex: 'component',
   },
   {
     title: '权限',
     width: 300,
     align: 'center',
-    dataIndex: 'perms',
+    dataIndex: 'permission',
   },
   {
     title: '排序号',
     width: 80,
     align: 'center',
-    dataIndex: 'orderNum',
+    dataIndex: 'seq',
   },
   {
     title: '更新时间',

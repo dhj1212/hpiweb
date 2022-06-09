@@ -85,10 +85,10 @@ export const useUserStore = defineStore({
         console.log('menus', menus);
         // 生成路由
         const generatorResult = generatorDynamicRouter(menus);
-        console.log('generatorResult');
+        console.log('generatorResult', generatorResult);
         this.menus = generatorResult.menus.filter((item) => !item.meta?.hideInMenu);
         !wsStore.client && wsStore.initSocket();
-
+        console.log('menus', menus);
         return { menus, perms, userInfo };
       } catch (error) {
         return Promise.reject(error);

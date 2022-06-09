@@ -1,16 +1,16 @@
 declare namespace API {
   type MenuListResultItem = {
-    createTime: string;
+    createdate: string;
     updatedAt: string;
-    id: number;
-    parentId: number;
+    permissionsid: string;
+    parentid: string;
     name: string;
-    router: string;
-    perms: string;
-    type: number;
+    path: string;
+    permission: string;
+    menutype: string;
     icon: string;
-    orderNum: number;
-    viewPath: string;
+    seq: number;
+    component: string;
     keepalive: boolean;
     isShow: boolean;
     keyPath?: number[];
@@ -21,16 +21,16 @@ declare namespace API {
 
   /** 新增菜单参数 */
   type MenuAddParams = {
-    type: number;
-    parentId: number;
+    menutype: string;
+    parentid: string;
     name: string;
-    orderNum: number;
-    router: string;
+    seq: number;
+    path: string;
     isShow: boolean;
     keepalive: boolean;
     icon: string;
-    perms: string;
-    viewPath: string;
+    permission: string;
+    component: string;
   };
 
   /** 更新某项菜单参数 */
@@ -66,9 +66,9 @@ declare namespace API {
       type: number;
       icon: string;
       orderNum: number;
-      viewPath: string;
-      keepalive: boolean;
-      isShow: boolean;
+      component: string;
+      keepAlive: boolean;
+      hidden: boolean;
     };
   };
 }
