@@ -69,10 +69,4 @@ export const baseColumns: TableColumnItem[] = [
     align: 'center',
     dataIndex: 'seq',
   },
-  {
-    title: '更新时间',
-    width: 180,
-    align: 'center',
-    dataIndex: 'updatedAt',
-  },
 ];

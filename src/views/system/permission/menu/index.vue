@@ -42,7 +42,7 @@
 
   const loadTableData = async () => {
     const data = await getMenuList();
-    console.log('data', data);
+    //console.log('data', data);
     menuTree.value = formatMenu2Tree(
       cloneDeep(data).filter((n) => n.menutype !== '2'),
       '-1',
@@ -59,8 +59,8 @@
         width: 700,
         onFinish: async (values) => {
           console.log('新增/编辑菜单', values);
-          values.menuId = record.permissionsid;
-          values.perms = values.permission?.join(',');
+          values.permissionsid = record.permissionsid;
+          values.permission = values.permission?.join(',');
           await (record.permissionsid ? updateMenu : createMenu)(values);
           dynamicTableInstance?.reload();
         },
@@ -73,7 +73,7 @@
 
     formRef?.updateSchema([
       {
-        field: 'parentId',
+        field: 'parentid',
         componentProps: {
           treeDefaultExpandedKeys: [-1].concat(record?.keyPath || []),
           treeData: ref([{ id: -1, name: '一级菜单', children: menuTree.value }]),
@@ -85,7 +85,7 @@
       ...record,
       icon: record.icon ?? '',
       perms: record.permission?.split(','),
-      parentid: record.permission ?? -1,
+      parentid: record.parentid ?? -1,
     });
   };
   const delRowConfirm = async (record: TableListItem) => {

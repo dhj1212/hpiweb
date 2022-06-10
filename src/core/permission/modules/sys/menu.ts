@@ -1,9 +1,9 @@
 export const sysMenu = {
   list: 'user/perm/list',
-  add: 'sys/menu/add',
-  update: 'sys/menu/update',
+  add: 'user/perm/add',
+  update: 'user/perm/edit',
   info: 'sys/menu/info',
-  delete: 'sys/menu/delete',
+  delete: 'user/perm/delete',
 } as const;
 
 export const deptValues = Object.values(sysMenu);

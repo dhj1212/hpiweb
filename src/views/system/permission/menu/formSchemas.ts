@@ -50,21 +50,21 @@ export const menuSchemas: FormSchema<API.MenuAddParams>[] = [
     field: 'path',
     component: 'Input',
     label: '节点路由',
-    vIf: ({ formModel }) => formModel['type'] !== '2',
+    vIf: ({ formModel }) => formModel['menutype'] !== '2',
     rules: [{ required: true, type: 'string' }],
   },
   {
     field: 'permission',
     component: () => MultipleCascader,
     label: '权限',
-    vIf: ({ formModel }) => formModel['type'] === '2',
+    vIf: ({ formModel }) => formModel['menutype'] === '2',
     rules: [{ required: true, type: 'array', message: '请选择权限' }],
   },
   {
     field: 'component',
     component: 'Select',
     label: '文件路径',
-    vIf: ({ formModel }) => formModel['type'] === 1,
+    vIf: ({ formModel }) => formModel['menutype'] === '1',
     componentProps: {
       options: Object.keys(constantRouterComponents).map((n) => ({ label: n, value: n })),
     },
@@ -84,10 +84,10 @@ export const menuSchemas: FormSchema<API.MenuAddParams>[] = [
     vIf: ({ formModel }) => formModel['type'] === 1,
   },
   {
-    field: 'isShow',
+    field: 'hidden',
     component: 'Switch',
-    label: '是否显示',
-    defaultValue: true,
+    label: '是否隐藏',
+    defaultValue: false,
     vIf: ({ formModel }) => formModel['type'] !== 2,
   },
   {
