@@ -1,7 +1,6 @@
 declare namespace API {
   type MenuListResultItem = {
     createdate: string;
-    updatedAt: string;
     permissionsid: string;
     parentid: string;
     name: string;
@@ -12,7 +11,7 @@ declare namespace API {
     seq: number;
     component: string;
     keepalive: boolean;
-    isShow: boolean;
+    hidden: boolean;
     keyPath?: number[];
   };
 
@@ -26,7 +25,7 @@ declare namespace API {
     name: string;
     seq: number;
     path: string;
-    isShow: boolean;
+    hidden: boolean;
     keepalive: boolean;
     icon: string;
     permission: string;
@@ -43,7 +42,6 @@ declare namespace API {
     menu: {
       createTime: string;
       updateTime: string;
-      id: number;
       parentId: number;
       name: string;
       router: string;
@@ -53,7 +51,7 @@ declare namespace API {
       orderNum: number;
       viewPath: string;
       keepalive: boolean;
-      isShow: boolean;
+      hidden: boolean;
     };
     parentMenu: {
       createTime: string;
