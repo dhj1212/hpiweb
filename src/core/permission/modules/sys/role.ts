@@ -1,10 +1,10 @@
 export const sysRole = {
   list: 'user/role/findRole',
-  page: 'sys/role/page',
-  add: 'sys/role/add',
-  update: 'sys/role/update',
-  delete: 'sys/role/delete',
-  info: 'sys/role/info',
+  page: 'user/role/list',
+  add: 'user/role/add',
+  update: 'user/role/edit',
+  delete: 'user/role/deleteBatchs',
+  info: 'user/role/info',
 } as const;
 
 export const values = Object.values(sysRole);

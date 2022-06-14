@@ -2,7 +2,7 @@ import type { FormSchema } from '@/components/core/schema-form/';
 
 export const roleSchemas: FormSchema<API.CreateRoleParams>[] = [
   {
-    field: 'name',
+    field: 'rolename',
     component: 'Input',
     label: '名称',
     rules: [{ required: true, type: 'string' }],
@@ -11,7 +11,7 @@ export const roleSchemas: FormSchema<API.CreateRoleParams>[] = [
     },
   },
   {
-    field: 'label',
+    field: 'rolecode',
     component: 'Input',
     label: '标识',
     rules: [{ required: true, type: 'string' }],
@@ -20,9 +20,9 @@ export const roleSchemas: FormSchema<API.CreateRoleParams>[] = [
     },
   },
   {
-    field: 'remark',
+    field: 'describes',
     component: 'InputTextArea',
-    label: '备注',
+    label: '描述',
   },
   {
     field: 'menus',

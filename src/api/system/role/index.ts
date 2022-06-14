@@ -2,7 +2,7 @@ import { request } from '@/utils/request';
 // import type { BaseResponse } from '@/utils/request';
 import Api from '@/core/permission/modules/sys/role';
 
-export function getRoleInfo(query: { roleId: number }) {
+export function getRoleInfo(query: { roleid: string }) {
   return request<API.RoleInfoResult>({
     url: Api.info,
     method: 'get',
@@ -52,11 +52,11 @@ export function updateRole(data: API.UpdateRoleParams) {
   );
 }
 
-export function deleteRole(data: { roleIds: number[] }) {
+export function deleteRole(data: { roleIds: string[] }) {
   return request(
     {
       url: Api.delete,
-      method: 'post',
+      method: 'DELETE',
       data,
     },
     {

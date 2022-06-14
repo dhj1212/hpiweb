@@ -42,7 +42,8 @@
 
   const [showModal] = useFormModal();
 
-  const getCheckedKeys = (checkedList: number[], options: TreeDataItem[], total = []) => {
+  const getCheckedKeys = (checkedList: string[], options: TreeDataItem[], total = []) => {
+    //alert(1);
     return options.reduce<number[]>((prev, curr) => {
       if (curr.children?.length) {
         getCheckedKeys(checkedList, curr.children, total);
@@ -61,10 +62,10 @@
   const openMenuModal = async (record: Partial<TableListItem>) => {
     const [formRef] = await showModal<API.UpdateRoleParams & API.CaptchaParams>({
       modalProps: {
-        title: `${record.id ? '编辑' : '新增'}角色`,
+        title: `${record.roleid ? '编辑' : '新增'}角色`,
         width: '50%',
         onFinish: async (values) => {
-          record.id && (values.roleId = record.id);
+          record.roleid && (values.roleid = record.roleid);
           const menusRef = formRef?.compRefs?.menus;
           const deptsRef = formRef?.compRefs?.depts;
           const params = {
@@ -73,7 +74,7 @@
             depts: [...deptsRef.halfCheckedKeys, ...deptsRef.checkedKeys],
           };
           console.log('新增/编辑角色', params);
-          await (record.id ? updateRole : createRole)(params);
+          await (record.roleid ? updateRole : createRole)(params);
           dynamicTableInstance?.reload();
         },
       },
@@ -84,8 +85,9 @@
     });
 
     const [deptData, menuData] = await Promise.all([getDeptList(), getMenuList()]);
-
-    const menuTree = formatMenu2Tree(menuData);
+    console.log('menuData', menuData);
+    const menuTree = formatMenu2Tree(menuData, '-1');
+    console.log('menuTree', menuTree);
     const deptTree = formatDept2Tree(deptData);
 
     formRef?.updateSchema([
@@ -99,9 +101,9 @@
       },
     ]);
     // 如果是编辑的话，需要获取角色详情
-    if (record.id) {
-      const data = await getRoleInfo({ roleId: record.id });
-      const menuIds = data.menus.map((n) => n.menuId);
+    if (record.roleid) {
+      const data = await getRoleInfo({ roleid: record.roleid });
+      const menuIds = data.menus.map((n) => n.permissionsid);
       const deptIds = data.depts.map((n) => n.departmentId);
 
       formRef?.setFieldsValue({
@@ -115,7 +117,7 @@
     }
   };
   const delRowConfirm = async (record: TableListItem) => {
-    await deleteRole({ roleIds: [record.id] });
+    await deleteRole({ roleIds: [record.roleid] });
     dynamicTableInstance?.reload();
   };
 

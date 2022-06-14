@@ -1,26 +1,26 @@
 declare namespace API {
   /** 新增角色 */
   type CreateRoleParams = {
-    name: string;
-    label: string;
-    remark: string;
+    rolename: string;
+    rolecode: string;
+    describes: string;
     menus: Key[];
     depts: number[];
   };
   /** 更新角色 */
   type UpdateRoleParams = CreateRoleParams & {
-    roleId: number;
+    roleid: string;
   };
 
   /** 角色列表项 */
   type RoleListResultItem = {
-    createdAt: string;
+    createdate: string;
     updatedAt: string;
     roleid: string;
     userId: string;
     rolename: string;
-    label: string;
-    remark: string;
+    rolecode: string;
+    describes: string;
   };
 
   /** 角色列表 */
@@ -31,7 +31,7 @@ declare namespace API {
     roleInfo: {
       createTime: string;
       updateTime: string;
-      id: number;
+      roleid: string;
       userId: string;
       name: string;
       label: string;
@@ -40,16 +40,15 @@ declare namespace API {
     menus: {
       createTime: string;
       updateTime: string;
-      id: number;
-      roleId: number;
-      menuId: number;
+      permissionsid: string;
+      roleid: string;
     }[];
     depts: {
       createTime: string;
       updateTime: string;
-      id: number;
-      roleId: number;
-      departmentId: number;
+      id: string;
+      roleId: string;
+      departmentId: string;
     }[];
   };
 }

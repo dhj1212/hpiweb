@@ -6,39 +6,27 @@ export type TableColumnItem = TableColumn<TableListItem>;
 
 export const baseColumns: TableColumnItem[] = [
   {
-    title: '#',
-    dataIndex: 'roleid',
-    width: 55,
-    align: 'center',
-    hideInSearch: true,
-  },
-  {
     title: '名称',
-    width: 200,
+    width: 250,
     align: 'center',
     dataIndex: 'rolename',
   },
   {
     title: '标识',
-    width: 80,
+    width: 150,
     align: 'center',
-    dataIndex: 'label',
-  },
-  {
-    title: '备注',
-    dataIndex: 'remark',
-    align: 'center',
+    dataIndex: 'rolecode',
   },
   {
     title: '创建时间',
-    dataIndex: 'createdAt',
+    dataIndex: 'createdate',
     align: 'center',
+    width: 150,
     hideInSearch: true,
   },
   {
-    title: '更新时间',
+    title: '描述',
+    dataIndex: 'describes',
     align: 'center',
-    dataIndex: 'updatedAt',
-    hideInSearch: true,
   },
 ];
