@@ -1,6 +1,6 @@
 export const sysLog = {
   req: 'sys/log/req/page',
-  login: 'sys/log/login/page',
+  list: 'sys/log/queryPageList',
   task: 'sys/log/task/page',
 } as const;
 

@@ -23,7 +23,7 @@ export function login(data: API.LoginParams) {
  */
 export function getImageCaptcha(params?: API.CaptchaParams) {
   return request<API.CaptchaResult>({
-    url: 'randomImage/uyt',
+    url: `randomImage/${Math.random()}`,
     method: 'get',
     params,
   });

@@ -16,7 +16,7 @@ export function getReqLogList(query: API.PageParams) {
 
 export function getLoginLogList(query: API.PageParams) {
   return request<API.TableListResult<API.LoginLogListResult>>({
-    url: LogApi.login,
+    url: LogApi.list,
     method: 'get',
     params: query,
   });

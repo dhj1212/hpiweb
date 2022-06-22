@@ -58,6 +58,27 @@ export const formatMenu2Tree = (
     });
 };
 
+export const formatDict2Tree = (
+  dicts: API.DictListResult,
+  parentId: string | null | undefined = null,
+  keyPath: (string | number)[] = [],
+): TreeDataItem[] => {
+  return dicts
+    .filter((item) => item.codeid === parentId)
+    .map((item) => {
+      const _keyPath = keyPath.concat(parentId || []);
+      const arr = formatDict2Tree(dicts, item.id, _keyPath);
+      return Object.assign(item, {
+        keyPath: _keyPath,
+        title: item.codename,
+        key: item.id,
+        value: item.id,
+        formData: item,
+        children: arr.length ? arr : null,
+      });
+    });
+};
+
 /**
  * 在树中根据ID找child
  * @param {string|number} id

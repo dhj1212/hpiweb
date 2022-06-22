@@ -19,21 +19,27 @@
 
   const columns: TableColumn[] = [
     {
+      title: '内容',
+      dataIndex: 'content',
+      align: 'center',
+    },
+    {
       title: '用户名',
-      dataIndex: 'username',
-      width: 280,
+      dataIndex: 'opermanname',
+      width: 100,
       align: 'center',
     },
     {
       title: '登录IP',
       dataIndex: 'ip',
-      width: 150,
+      width: 120,
       align: 'center',
     },
     {
-      title: '登录时间',
-      dataIndex: 'time',
+      title: '时间',
+      dataIndex: 'logdate',
       align: 'center',
+      width: 180,
       formItemProps: {
         component: 'DatePicker',
         componentProps: {
@@ -42,14 +48,10 @@
       },
     },
     {
-      title: '操作系统',
-      dataIndex: 'os',
-      align: 'center',
-    },
-    {
       title: '浏览器',
       dataIndex: 'browser',
       align: 'center',
+      width: 140,
     },
   ];
 </script>

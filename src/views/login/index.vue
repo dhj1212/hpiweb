@@ -75,7 +75,7 @@
   const setCaptcha = async () => {
     //alert(0);
     //const { id, img } = await getImageCaptcha({ width: 100, height: 50 });
-    const { img } = await getImageCaptcha({ width: 100, height: 50 });
+    const { img } = await getImageCaptcha({ width: 100, height: 40 });
     //const img = await getImageCaptcha({ width: 100, height: 50 });
     //alert(message);
     //alert(img);
