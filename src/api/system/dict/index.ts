@@ -22,7 +22,14 @@ export function getDictList(query: API.PageParams) {
   });
 }
 
-export function createDict(data: API.MenuAddParams) {
+export function findDict() {
+  return request<API.DictListResult>({
+    url: DictApi.findDict,
+    method: 'get',
+  });
+}
+
+export function createDict(data: API.DictAddParams) {
   return request(
     {
       url: DictApi.add,
@@ -35,7 +42,7 @@ export function createDict(data: API.MenuAddParams) {
   );
 }
 
-export function updateDict(data: API.MenuUpdateParams) {
+export function updateDict(data: API.DictAddParams) {
   return request(
     {
       url: DictApi.update,
@@ -48,7 +55,7 @@ export function updateDict(data: API.MenuUpdateParams) {
   );
 }
 
-export function deleteDict(data: { permissionsid: string }) {
+export function deleteDict(data: { id: string }) {
   return request(
     {
       url: DictApi.del,

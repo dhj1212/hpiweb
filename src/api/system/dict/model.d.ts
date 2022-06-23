@@ -11,36 +11,24 @@ declare namespace API {
     seq: number;
     comments: string;
     itemvalue: string;
+    pid: string;
+    status: boolean;
+    isdictitem: number;
     keyPath?: number[];
   };
-  /** 登录日志结果 */
+  /** 数据字典结果 */
   type DictListResult = DictListResultItem[];
-  /** 请求日志项结果 */
-  type ReqLogListItemResult = {
-    createTime: string;
-    updateTime: string;
-    id: number;
-    ip: string;
-    userId: number;
-    params: string;
-    action: string;
-    method: string;
-    status: number;
-    consumeTime: number;
-  };
-  /** 请求日志结果 */
-  type ReqLogListResult = ReqLogListItemResult[];
 
-  /** 任务日志项结果 */
-  type TaskLogListItemResult = {
-    id: number;
-    taskId: number;
-    name: string;
-    createdAt: string;
-    consumeTime: number;
-    detail: string;
-    status: number;
+  /** 新增数据字典参数 */
+  type DictAddParams = {
+    id: string;
+    codename: string;
+    codeid: string;
+    seq: number;
+    comments: string;
+    pid: string;
+    isdictitem: number;
+    status: boolean;
+    itemvalue: string;
   };
-  /** 任务日志结果 */
-  type TaskLogListResult = TaskLogListItemResult[];
 }

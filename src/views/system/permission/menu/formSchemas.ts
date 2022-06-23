@@ -8,7 +8,7 @@ export const menuSchemas: FormSchema<API.MenuAddParams>[] = [
     field: 'menutype',
     component: 'RadioGroup',
     label: '菜单类型',
-    defaultValue: 0,
+    defaultValue: ({ formModel }) => formModel['menutype'],
     rules: [{ required: true, type: 'string' }],
     componentProps: {
       options: [

@@ -64,7 +64,7 @@ export const formatDict2Tree = (
   keyPath: (string | number)[] = [],
 ): TreeDataItem[] => {
   return dicts
-    .filter((item) => item.codeid === parentId)
+    .filter((item) => item.pid === parentId)
     .map((item) => {
       const _keyPath = keyPath.concat(parentId || []);
       const arr = formatDict2Tree(dicts, item.id, _keyPath);

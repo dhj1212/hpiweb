@@ -5,14 +5,14 @@ export type TableListItem = API.DictListResultItem;
 export type TableColumnItem = TableColumn<TableListItem>;
 
 /**
- * 将对应菜单类型转为字符串字意
+ * 显示代码名称值信息
  */
-const getDictName = (id: string, codeid: string, value: string) => {
-  switch (codeid) {
+const getDictName = (record: any) => {
+  switch (record.pid) {
     case '-1':
-      return id;
+      return record.id;
     default:
-      return value;
+      return record.itemvalue;
   }
 };
 
@@ -29,7 +29,7 @@ export const baseColumns: TableColumnItem[] = [
     dataIndex: 'codeid',
     align: 'center',
     fixed: 'left',
-    bodyCell: ({ record }) => <>{getDictName(record.id, record.codeid, record.itemvalue)}</>,
+    bodyCell: ({ record }) => <>{getDictName(record)}</>,
   },
   {
     title: '序号',

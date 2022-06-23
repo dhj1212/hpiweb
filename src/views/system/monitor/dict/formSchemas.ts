@@ -1,87 +1,73 @@
 import type { FormSchema } from '@/components/core/schema-form/';
-import IconsSelect from '@/components/basic/icons-select/index.vue';
-import { constantRouterComponents } from '@/router/asyncModules';
+import { findDict } from '@/api/system/dict/';
 
-export const menuSchemas: FormSchema<API.MenuAddParams>[] = [
+export const dictSchemas: FormSchema<API.DictAddParams>[] = [
   {
-    field: 'menutype',
+    field: 'isdictitem',
     component: 'RadioGroup',
-    label: '菜单类型',
+    label: '代码类型',
     defaultValue: 0,
-    rules: [{ required: true, type: 'string' }],
+    rules: [{ required: true, type: 'number' }],
     componentProps: {
       options: [
         {
-          label: '目录',
-          value: '0',
+          label: '代码',
+          value: 0,
         },
         {
-          label: '菜单',
-          value: '1',
-        },
-        {
-          label: '权限',
-          value: '2',
+          label: '代码项目',
+          value: 1,
         },
       ],
     },
   },
   {
-    field: 'name',
+    field: 'pid',
+    component: 'Select',
+    label: '上级代码',
+    vIf: ({ formModel }) => formModel['isdictitem'] === 1,
+    rules: [{ required: true, type: 'string' }],
+    componentProps: {
+      request: async () => {
+        const data = await findDict();
+        return data.map((n) => ({ label: n.codename, value: n.codeid }));
+      },
+    },
+  },
+  {
+    field: 'codename',
     component: 'Input',
-    label: '节点名称',
+    label: '代码名称',
     rules: [{ required: true, type: 'string' }],
   },
   {
-    field: 'parentid',
+    field: 'itemvalue',
+    component: 'Input',
+    label: '代码值',
+    vIf: ({ formModel }) => formModel['isdictitem'] === 1,
+    rules: [{ required: true, type: 'string' }],
+  },
+  {
+    field: 'codeid',
+    component: 'Input',
+    label: '代码',
+    vIf: ({ formModel }) => formModel['isdictitem'] === 0,
+    rules: [{ required: true, type: 'string' }],
+  },
+  /* {
+    field: 'pid',
     component: 'TreeSelect',
-    label: '上级节点',
+    label: '上级代码',
     componentProps: {
       fieldNames: {
-        label: 'name',
+        label: 'codename',
         value: 'id',
       },
       getPopupContainer: () => document.body,
     },
+    vIf: ({ formModel }) => formModel['codetype'] === 1,
     rules: [{ required: true, type: 'string' }],
-  },
-  {
-    field: 'path',
-    component: 'Input',
-    label: '节点路由',
-    vIf: ({ formModel }) => formModel['menutype'] !== '2',
-    rules: [{ required: true, type: 'string' }],
-  },
-  {
-    field: 'component',
-    component: 'Select',
-    label: '文件路径',
-    vIf: ({ formModel }) => formModel['menutype'] === '1',
-    componentProps: {
-      options: Object.keys(constantRouterComponents).map((n) => ({ label: n, value: n })),
-    },
-    rules: [{ required: true, type: 'string' }],
-  },
-  {
-    field: 'icon',
-    component: () => IconsSelect,
-    label: '节点图标',
-    vIf: ({ formModel }) => formModel['type'] !== 2,
-  },
-  {
-    field: 'keepalive',
-    component: 'Switch',
-    label: '是否缓存',
-    defaultValue: true,
-    vIf: ({ formModel }) => formModel['type'] === 1,
-  },
-  {
-    field: 'hidden',
-    component: 'Switch',
-    label: '是否隐藏',
-    defaultValue: false,
-    vIf: ({ formModel }) => formModel['type'] !== 2,
-  },
+  }, */
   {
     field: 'seq',
     component: 'InputNumber',
@@ -92,5 +78,16 @@ export const menuSchemas: FormSchema<API.MenuAddParams>[] = [
         width: '100%',
       },
     },
+  },
+  {
+    field: 'status',
+    component: 'Switch',
+    label: '是否可用',
+    defaultValue: true,
+  },
+  {
+    field: 'comments',
+    component: 'Input',
+    label: '说明',
   },
 ];

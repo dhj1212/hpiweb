@@ -9,8 +9,8 @@
       :scroll="{ x: 2000 }"
     >
       <template #toolbar>
-        <a-button type="primary" :disabled="!$auth('sys.menu.add')" @click="openMenuModal({})">
-          新增
+        <a-button type="primary" :disabled="!$auth('sys.menu.add')" @click="openDictModal({})">
+          新增代码
         </a-button>
       </template>
     </DynamicTable>
@@ -21,7 +21,7 @@
   import { ref } from 'vue';
   import { cloneDeep } from 'lodash-es';
   import { baseColumns, type TableListItem, type TableColumnItem } from './columns';
-  import { menuSchemas } from './formSchemas';
+  import { dictSchemas } from './formSchemas';
   import type { TreeSelectProps } from 'ant-design-vue';
   import { getDictList, updateDict, createDict, deleteDict } from '@/api/system/dict';
   import { useTable } from '@/components/core/dynamic-table';
@@ -32,7 +32,7 @@
     name: 'SysDict',
   });
 
-  const menuTree = ref<TreeSelectProps['treeData']>([]);
+  const dictTree = ref<TreeSelectProps['treeData']>([]);
   const [DynamicTable, dynamicTableInstance] = useTable({
     search: false,
     pagination: false,
@@ -42,9 +42,8 @@
 
   const loadTableData = async () => {
     const data = await getDictList({});
-    console.log('dictdata', data);
-    menuTree.value = formatDict2Tree(
-      cloneDeep(data).filter((n) => n.codeid === '-1'),
+    dictTree.value = formatDict2Tree(
+      cloneDeep(data).filter((n) => n.pid === '-1'),
       '-1',
     ); //父节点为-1
     console.log('cloneDeep(data)', cloneDeep(data));
@@ -52,32 +51,32 @@
     return { list: formatDict2Tree(cloneDeep(data), '-1') };
   };
 
-  const openMenuModal = async (record: Partial<TableListItem>) => {
+  const openDictModal = async (record: Partial<TableListItem>) => {
     const [formRef] = await showModal({
       modalProps: {
         title: `${record.id ? '编辑' : '新增'}菜单`,
         width: 700,
         onFinish: async (values) => {
-          console.log('新增/编辑菜单', values);
-          values.permissionsid = record.id;
-          values.permission = values.permission?.join(',');
+          //console.log('新增/编辑菜单', values);
+          values.id = record.id;
+          //values.permission = values.permission?.join(',');
           await (record.id ? updateDict : createDict)(values);
           dynamicTableInstance?.reload();
         },
       },
       formProps: {
         labelWidth: 100,
-        schemas: menuSchemas,
+        schemas: dictSchemas,
       },
     });
 
     formRef?.updateSchema([
       {
-        field: 'parentid',
-        componentProps: {
-          treeDefaultExpandedKeys: [-1].concat(record?.keyPath || []),
-          treeData: ref([{ id: -1, name: '一级菜单', children: menuTree.value }]),
-        },
+        //field: 'parentid',
+        //componentProps: {
+        //treeDefaultExpandedKeys: [-1].concat(record?.keyPath || []),
+        //treeData: ref([{ id: -1, name: '一级菜单', children: menuTree.value }]),
+        // },
       },
     ]);
 
@@ -109,7 +108,7 @@
             perm: 'sys.menu.update',
             effect: 'disable',
           },
-          onClick: () => openMenuModal(record),
+          onClick: () => openDictModal(record),
         },
         {
           label: '删除',
