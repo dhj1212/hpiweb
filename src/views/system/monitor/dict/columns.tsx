@@ -28,7 +28,6 @@ export const baseColumns: TableColumnItem[] = [
     width: 200,
     dataIndex: 'codeid',
     align: 'center',
-    fixed: 'left',
     bodyCell: ({ record }) => <>{getDictName(record)}</>,
   },
   {

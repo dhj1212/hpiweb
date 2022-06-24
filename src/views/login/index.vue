@@ -73,17 +73,9 @@
   const userStore = useUserStore();
 
   const setCaptcha = async () => {
-    //alert(0);
-    //const { id, img } = await getImageCaptcha({ width: 100, height: 50 });
     const { img } = await getImageCaptcha({ width: 100, height: 40 });
     //const img = await getImageCaptcha({ width: 100, height: 50 });
-    //alert(message);
-    //alert(img);
-    //console.info(i);
-    //console.info(img);
-    //alert(result);
     state.captcha = img;
-    //state.formInline.captchaId = id;
   };
   setCaptcha();
 
@@ -97,7 +89,6 @@
     }
     message.loading('登录中...', 0);
     state.loading = true;
-    console.log(state.formInline);
     // params.password = md5(password)
     try {
       await userStore.login(state.formInline).finally(() => {

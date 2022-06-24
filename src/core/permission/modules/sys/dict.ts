@@ -4,7 +4,7 @@ export const sysDict = {
   findDict: 'sys/code/findDict',
   add: 'sys/code/addDicrOrItem',
   update: 'sys/code/editDicrOrItem',
-  del: 'sys/code/editDicrOrItem',
+  del: 'sys/code/delDicrOrItem',
 } as const;
 export const values = Object.values(sysDict);
 

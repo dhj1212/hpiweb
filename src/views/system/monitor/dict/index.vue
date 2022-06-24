@@ -9,7 +9,7 @@
       :scroll="{ x: 2000 }"
     >
       <template #toolbar>
-        <a-button type="primary" :disabled="!$auth('sys.menu.add')" @click="openDictModal({})">
+        <a-button type="primary" :disabled="!$auth('sys:dict:add')" @click="openDictModal({})">
           新增代码
         </a-button>
       </template>
@@ -88,7 +88,7 @@
     });
   };
   const delRowConfirm = async (record: TableListItem) => {
-    await deleteDict({ permissionsid: record.id });
+    await deleteDict({ id: record.id, isdictitem: record.isdictitem });
     dynamicTableInstance?.reload();
   };
 
@@ -105,14 +105,14 @@
         {
           label: '编辑',
           auth: {
-            perm: 'sys.menu.update',
+            perm: 'sys:dict:update',
             effect: 'disable',
           },
           onClick: () => openDictModal(record),
         },
         {
           label: '删除',
-          auth: 'sys.menu.delete',
+          auth: 'sys:dict:del',
           popConfirm: {
             title: '你确定要删除吗？',
             onConfirm: () => delRowConfirm(record),

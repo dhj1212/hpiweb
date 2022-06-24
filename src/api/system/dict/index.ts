@@ -55,7 +55,7 @@ export function updateDict(data: API.DictAddParams) {
   );
 }
 
-export function deleteDict(data: { id: string }) {
+export function deleteDict(data: { id: string; isdictitem: number }) {
   return request(
     {
       url: DictApi.del,
