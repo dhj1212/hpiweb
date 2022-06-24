@@ -127,6 +127,12 @@ export const updatePswSchemas: FormSchema[] = [
     label: '新密码',
     rules: [{ required: true, type: 'string' }],
   },
+  {
+    field: 'confirmpassword',
+    component: 'Input',
+    label: '确认新密码',
+    rules: [{ required: true, type: 'string' }],
+  },
 ];
 /**
  * @description 将用户转移部门

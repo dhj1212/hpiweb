@@ -263,8 +263,9 @@
         width: 700,
         onFinish: async (values) => {
           await updateUserPassword({
-            userId: record.userid,
+            userid: record.userid,
             password: values.password,
+            confirmpassword: values.confirmpassword,
           });
         },
       },
@@ -326,10 +327,12 @@
     dynamicTableInstance?.reload?.();
   };
 
-  const loadTableData = async ({ page, limit }: LoadDataParams) => {
+  const loadTableData = async ({ page, limit, loginid, username }: LoadDataParams) => {
     const result = await getUserListPage({
       page,
       limit,
+      loginid,
+      username,
       departmentIds: state.departmentIds.length ? state.departmentIds : undefined,
     });
     rowSelection.value.selectedRowKeys = [];

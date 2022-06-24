@@ -4,7 +4,7 @@ export const sysUser = {
   info: 'user/user/getUser',
   update: 'user/user/edit',
   delete: 'user/user/deletions',
-  password: 'sys/user/password',
+  password: 'user/user/adminChangPassword',
 } as const;
 
 export const values = Object.values(sysUser);

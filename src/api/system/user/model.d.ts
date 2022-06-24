@@ -76,7 +76,8 @@ declare namespace API {
 
   /** 更新管理员密码 */
   type UpdateAdminUserPassword = {
-    userId: string;
+    userid: string;
     password: string;
+    confirmpassword: string;
   };
 }

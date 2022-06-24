@@ -81,8 +81,8 @@ export const useUserStore = defineStore({
         this.name = userInfo.username;
         this.avatar = userInfo.headImg;
         this.userInfo = userInfo;
-        console.log('perms', perms);
-        console.log('menus', menus);
+        //console.log('perms', perms);
+        //console.log('menus', menus);
         // 生成路由
         const generatorResult = generatorDynamicRouter(menus);
         console.log('generatorResult', generatorResult);

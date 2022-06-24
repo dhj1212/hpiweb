@@ -1,11 +1,20 @@
 import { request } from '@/utils/request';
 import Api from '@/core/permission/modules/sys/user';
 
-export function getUserListPage(data: API.PageParams<{ departmentIds: number[] }>) {
+export function getUserListPage(data: API.PageParams<{ departmentIds: string[] }>) {
+  console.log('API.PageParams==', data);
   return request<API.TableListResult<API.UserListPageResult>>({
     url: Api.page,
     method: 'post',
     data,
+  });
+}
+
+export function getUserListPage1(query: API.PageParams) {
+  return request({
+    url: Api.page,
+    method: 'post',
+    params: query,
   });
 }
 
@@ -47,7 +56,7 @@ export function updateUserPassword(data: API.UpdateAdminUserPassword) {
   return request(
     {
       url: Api.password,
-      method: 'post',
+      method: 'put',
       data,
     },
     {
