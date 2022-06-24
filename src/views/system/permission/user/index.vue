@@ -147,7 +147,7 @@
    * @description 打开部门弹窗
    */
   const openDeptModal = async (record: Partial<API.SysDeptListResult> = {}) => {
-    console.log('record', record);
+    //console.log('record', record);
 
     const [formRef] = await showModal<any>({
       modalProps: {
@@ -336,7 +336,6 @@
       departmentIds: state.departmentIds.length ? state.departmentIds : undefined,
     });
     rowSelection.value.selectedRowKeys = [];
-    console.log('data', result);
     return result;
   };
 

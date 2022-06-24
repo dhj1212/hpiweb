@@ -80,4 +80,10 @@ declare namespace API {
     password: string;
     confirmpassword: string;
   };
+  /** 用户查询参数 */
+  type UserPageParams = {
+    loginid: string;
+    username: string;
+    departmentIds: string[];
+  };
 }

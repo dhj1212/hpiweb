@@ -17,6 +17,7 @@ export const baseColumns: TableColumnItem[] = [
     title: '姓名',
     width: 120,
     dataIndex: 'username',
+    hideInTable: false,
     align: 'center',
   },
   {
@@ -28,7 +29,6 @@ export const baseColumns: TableColumnItem[] = [
   {
     title: '所在部门',
     dataIndex: 'orgname',
-    hideInSearch: true,
     align: 'center',
     width: 180,
   },
@@ -54,12 +54,14 @@ export const baseColumns: TableColumnItem[] = [
     width: 120,
     align: 'center',
     dataIndex: 'nickName',
+    hideInSearch: true,
   },
   {
     title: '邮箱',
     width: 120,
     align: 'center',
     dataIndex: 'eMail',
+    hideInSearch: true, //设置不搜索项
   },
   {
     title: '手机',
@@ -72,6 +74,7 @@ export const baseColumns: TableColumnItem[] = [
     width: 120,
     align: 'center',
     dataIndex: 'remark',
+    hideInSearch: true,
   },
   {
     title: '状态',
@@ -109,7 +112,7 @@ export const baseColumns: TableColumnItem[] = [
     },
   },
   {
-    title: '修改时间',
+    title: '最后修改时间',
     dataIndex: 'modifydate',
     width: 120,
     formItemProps: {
