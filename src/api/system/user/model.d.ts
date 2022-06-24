@@ -1,6 +1,6 @@
 declare namespace API {
   type UserListPageResultItem = {
-    createdate: date;
+    createdate: string;
     orgid: string;
     eMail: string;
     headImg: string;
@@ -84,6 +84,9 @@ declare namespace API {
   type UserPageParams = {
     loginid: string;
     username: string;
+    phone: string;
+    createdate: string;
+    status: string;
     departmentIds: string[];
   };
 }
